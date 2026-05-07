@@ -40,7 +40,8 @@ def green_bar_category():
     plt.ylabel('Order Count')
     plt.tight_layout()
     # plt.show()
-    return plt
+    fig = plt.gcf()
+    return fig
 
 
 def green_hist_amount():
@@ -56,7 +57,8 @@ def green_hist_amount():
     plt.xlabel('amount')
     plt.tight_layout()
     # plt.show()
-    return plt
+    fig = plt.gcf()
+    return fig
 
 def green_set_labels():
     """
@@ -76,7 +78,8 @@ def green_set_labels():
     plt.ylabel('Order Count')
     plt.tight_layout()
     # plt.show()
-    return plt
+    fig = plt.gcf()
+    return fig
 
 
 # ============================================================
@@ -107,7 +110,8 @@ def yellow_line_region_trend():
     plt.tight_layout()
     # plt.show()
 
-    return df
+    fig = plt.gcf()
+    return fig
 
 
 def yellow_box_vip():
@@ -127,7 +131,8 @@ def yellow_box_vip():
     plt.ylabel('Amount')
     # plt.tight_layout()
     # plt.show()
-    return plt
+    fig = plt.gcf()
+    return fig
 
 def yellow_scatter_price_amount():
     """
@@ -144,8 +149,9 @@ def yellow_scatter_price_amount():
     plt.xlabel('Unit')
     plt.ylabel('Amount')
     plt.tight_layout()
-    plt.show()
-    return plt
+    # plt.show()
+    fig = plt.gcf()
+    return fig
 
 # tmp = _load_data()
 # tmp = green_bar_category()
@@ -202,8 +208,8 @@ def red_category_dashboard(category="Electronics"):
     axes[1, 1].set_xlabel('Product')
     axes[1, 1].set_ylabel('Amount')
 
-    plt.tight_layout()
+    fig.tight_layout()
     # plt.show()
-    return plt
+    return fig
 
 # red_category_dashboard()
