@@ -71,12 +71,12 @@ def yellow_restock_cost(prices, stocks):
     mask = prices<500
     return sum(50 * prices[mask])
 
-import pandas as pd
+# import pandas as pd
 # C:\python_data\python-da-homework-2026\datasets\ecommerce\products.csv
-df = pd.read_csv('../datasets/ecommerce/products.csv')
+# df = pd.read_csv('../datasets/ecommerce/products.csv')
 # print(df['unit_price'])
 # print(df['stock_qty'])
-print(yellow_expensive_count(df['unit_price']))
+# print(yellow_expensive_count(df['unit_price']))
 # print(type(yellow_expensive_count(df['unit_price'])))
 # print(yellow_top3_stock_indices(df['stock_qty']))
 # print(yellow_restock_cost(df['unit_price'], df['stock_qty']))
