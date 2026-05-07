@@ -20,7 +20,7 @@ def green_mean():
     """建立 [10, 20, 30, 40, 50]，回傳所有元素的平均值 (float)"""
     # TODO: 你的程式碼
     arr = (np.arange(5) + 1) * 10
-    return arr
+    return arr.mean().item()
 
 # print(green_mean())
 
@@ -50,7 +50,7 @@ def green_filter():
 def yellow_expensive_count(prices):
     """回傳單價 > 1000 的商品數量 (int)"""
     # TODO: 你的程式碼
-    return prices[prices>1000].count()
+    return prices[prices>1000].count().item()
 
 
 def yellow_top3_stock_indices(stocks):
@@ -77,6 +77,7 @@ def yellow_restock_cost(prices, stocks):
 # print(df['unit_price'])
 # print(df['stock_qty'])
 # print(yellow_expensive_count(df['unit_price']))
+# print(type(yellow_expensive_count(df['unit_price'])))
 # print(yellow_top3_stock_indices(df['stock_qty']))
 # print(yellow_restock_cost(df['unit_price'], df['stock_qty']))
 

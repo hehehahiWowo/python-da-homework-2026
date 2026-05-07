@@ -60,7 +60,7 @@ def green_plotly_pie():
     提示：px.pie()
     """
     # TODO: 你的程式碼
-    df = pd.read_csv('../datasets/ecommerce/orders_enriched.csv')
+    df = pd.read_csv('datasets/ecommerce/orders_enriched.csv')
     # df = df['vip_level'].value_counts().reset_index()
     df = df.groupby('vip_level')['order_id'].count().reset_index()
     print(df)

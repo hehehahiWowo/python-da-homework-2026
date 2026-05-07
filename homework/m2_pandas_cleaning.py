@@ -42,7 +42,7 @@ def green_dtypes(df):
     # TODO: 你的程式碼
     return df.dtypes
 
-temp = green_read_csv()
+# temp = green_read_csv()
 # print(green_read_csv())
 # print(green_shape(temp))
 # print(green_dtypes(temp))
@@ -58,7 +58,8 @@ def yellow_clean_columns(df):
     提示：df.columns.str.strip().str.lower()
     """
     # TODO: 你的程式碼
-    df2 = df.columns.str.strip().str.lower()
+    df2 = df.copy()
+    df2.columns = df2.columns.str.strip().str.lower()
     return df2
 
 
@@ -70,7 +71,8 @@ def yellow_clean_amount(df):
     提示：.str.replace() + .astype(float)
     """
     # TODO: 你的程式碼
-    df2 = df['amount'].str.replace('$', '').str.replace(',', '').astype(float)
+    df2 = df.copy()
+    df2['amount'] = df2['amount'].str.replace('$', '').str.replace(',', '').astype(float)
     return df2
 
 
@@ -84,8 +86,8 @@ def yellow_drop_duplicates(df):
     return df2
 
 # print(yellow_clean_columns(temp))
-# print(yellow_clean_amount(temp).head())
-# print(yellow_drop_duplicates(temp).shape)
+# print(yellow_clean_amount(temp))
+# print(yellow_drop_duplicates(temp))
 # ============================================================
 # 🔴 挑戰題（25 分）
 # ============================================================
