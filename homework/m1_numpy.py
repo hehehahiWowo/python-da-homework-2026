@@ -50,7 +50,7 @@ def green_filter():
 def yellow_expensive_count(prices):
     """回傳單價 > 1000 的商品數量 (int)"""
     # TODO: 你的程式碼
-    return prices[prices>1000].count().item()
+    return int((prices > 1000).sum())
 
 
 def yellow_top3_stock_indices(stocks):
