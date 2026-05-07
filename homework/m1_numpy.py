@@ -19,19 +19,27 @@ import numpy as np
 def green_mean():
     """建立 [10, 20, 30, 40, 50]，回傳所有元素的平均值 (float)"""
     # TODO: 你的程式碼
-    pass
+    arr = (np.arange(5) + 1) * 10
+    return arr
+
+# print(green_mean())
 
 
 def green_double():
     """建立 [10, 20, 30, 40, 50]，回傳所有元素乘以 2 的 ndarray"""
     # TODO: 你的程式碼
-    pass
+    arr = (np.arange(5) + 1) * 10 * 2
+    return arr
 
+# print(green_double())
 
 def green_filter():
     """建立 [10, 20, 30, 40, 50]，回傳大於 25 的元素 (ndarray)"""
     # TODO: 你的程式碼
-    pass
+    arr = (np.arange(5) + 1) * 10
+    return arr[arr>25]
+
+# print(green_filter())
 
 
 # ============================================================
@@ -42,7 +50,7 @@ def green_filter():
 def yellow_expensive_count(prices):
     """回傳單價 > 1000 的商品數量 (int)"""
     # TODO: 你的程式碼
-    pass
+    return prices[prices>1000].count()
 
 
 def yellow_top3_stock_indices(stocks):
@@ -51,7 +59,7 @@ def yellow_top3_stock_indices(stocks):
     提示：np.argsort
     """
     # TODO: 你的程式碼
-    pass
+    return np.argsort(-stocks)[:3]
 
 
 def yellow_restock_cost(prices, stocks):
@@ -60,8 +68,17 @@ def yellow_restock_cost(prices, stocks):
     提示：布林遮罩 + .sum()
     """
     # TODO: 你的程式碼
-    pass
+    mask = prices<500
+    return sum(50 * prices[mask])
 
+# import pandas as pd
+# C:\python_data\python-da-homework-2026\datasets\ecommerce\products.csv
+# df = pd.read_csv('../datasets/ecommerce/products.csv')
+# print(df['unit_price'])
+# print(df['stock_qty'])
+# print(yellow_expensive_count(df['unit_price']))
+# print(yellow_top3_stock_indices(df['stock_qty']))
+# print(yellow_restock_cost(df['unit_price'], df['stock_qty']))
 
 # ============================================================
 # 🔴 挑戰題（25 分）
@@ -77,4 +94,11 @@ def red_double11_prices(prices, stocks):
     提示：np.where 可以巢狀使用
     """
     # TODO: 你的程式碼
-    pass
+    # print(prices, stocks)
+    new_prices = np.where(stocks>=100, prices*0.7, np.where(stocks>=20, prices*0.9, prices))
+    # print(type(new_prices))
+    return new_prices
+
+# import pandas as pd
+# df = pd.read_csv('../datasets/ecommerce/products.csv')
+# print(red_double11_prices(df['unit_price'], df['stock_qty']))

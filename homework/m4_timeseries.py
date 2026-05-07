@@ -27,8 +27,9 @@ def green_avg_by_month():
     提示：df['order_date'].dt.month
     """
     # TODO: 你的程式碼
-    pass
-
+    df = _load_data()
+    ans = df.groupby(df['order_date'].dt.month)['amount'].mean()
+    return ans
 
 def green_top3_dates():
     """
@@ -37,7 +38,9 @@ def green_top3_dates():
     提示：value_counts().head(3)
     """
     # TODO: 你的程式碼
-    pass
+    df = _load_data()
+    ans = df['order_date'].dt.date.value_counts().head(3)
+    return ans
 
 
 def green_date_range():
@@ -46,7 +49,10 @@ def green_date_range():
     格式為 pandas Timestamp
     """
     # TODO: 你的程式碼
-    pass
+    df = _load_data()
+    # temp = (df['order_date'].min(), df['order_date'].max())
+    # print(type(temp))
+    return (df['order_date'].min(), df['order_date'].max())
 
 
 # ============================================================
@@ -60,7 +66,8 @@ def yellow_monthly_revenue():
     提示：set_index('order_date').resample('ME')['amount'].sum()
     """
     # TODO: 你的程式碼
-    pass
+    df = _load_data()
+    return df.set_index('order_date').resample('ME')['amount'].sum()
 
 
 def yellow_rolling_avg(monthly_revenue):
@@ -71,7 +78,7 @@ def yellow_rolling_avg(monthly_revenue):
     提示：.rolling(window=3).mean()
     """
     # TODO: 你的程式碼
-    pass
+    return monthly_revenue.rolling(window=3).mean()
 
 
 def yellow_category_median(df):
@@ -81,8 +88,16 @@ def yellow_category_median(df):
     提示：groupby + median + sort_values
     """
     # TODO: 你的程式碼
-    pass
+    return df.groupby('category')['amount'].median().sort_values(ascending=False)
 
+# tmp = _load_data()
+# tmp = green_avg_by_month()
+# tmp = green_top3_dates()
+# tmp = green_date_range()
+# tmp = yellow_monthly_revenue()
+# tmp = yellow_rolling_avg(tmp)
+# tmp = yellow_category_median(_load_data())
+# print(tmp)
 
 # ============================================================
 # 🔴 挑戰題（25 分）
@@ -101,4 +116,15 @@ def red_monthly_report():
     提示：resample + agg + pct_change
     """
     # TODO: 你的程式碼
-    pass
+    df = _load_data()
+    ans = df.groupby(df['order_date'].dt.to_period('M')).agg(
+        order_count= ('order_id', 'count'),
+        revenue= ('amount', 'sum'),
+        active_customers= ('customer_id', 'nunique'),
+    ).sort_index()
+
+    ans['avg_order_value'] = ans['revenue'] / ans['order_count']
+    ans['revenue_growth'] = ans['revenue'].pct_change() * 100
+    return ans
+
+# print(red_monthly_report())

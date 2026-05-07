@@ -20,7 +20,9 @@ def green_read_csv():
     提示：pd.read_csv()
     """
     # TODO: 你的程式碼
-    pass
+    df = pd.read_csv('datasets/ecommerce/orders_raw.csv')
+    # print(df.head())
+    return df
 
 
 def green_shape(df):
@@ -29,7 +31,7 @@ def green_shape(df):
     提示：df.shape
     """
     # TODO: 你的程式碼
-    pass
+    return df.shape
 
 
 def green_dtypes(df):
@@ -38,8 +40,12 @@ def green_dtypes(df):
     提示：df.dtypes
     """
     # TODO: 你的程式碼
-    pass
+    return df.dtypes
 
+temp = green_read_csv()
+# print(green_read_csv())
+# print(green_shape(temp))
+# print(green_dtypes(temp))
 
 # ============================================================
 # 🟡 核心題（每題 15 分，共 45 分）
@@ -52,7 +58,8 @@ def yellow_clean_columns(df):
     提示：df.columns.str.strip().str.lower()
     """
     # TODO: 你的程式碼
-    pass
+    df2 = df.columns.str.strip().str.lower()
+    return df2
 
 
 def yellow_clean_amount(df):
@@ -63,7 +70,8 @@ def yellow_clean_amount(df):
     提示：.str.replace() + .astype(float)
     """
     # TODO: 你的程式碼
-    pass
+    df2 = df['amount'].str.replace('$', '').str.replace(',', '').astype(float)
+    return df2
 
 
 def yellow_drop_duplicates(df):
@@ -72,9 +80,12 @@ def yellow_drop_duplicates(df):
     提示：df.drop_duplicates()
     """
     # TODO: 你的程式碼
-    pass
+    df2 = df.drop_duplicates()
+    return df2
 
-
+# print(yellow_clean_columns(temp))
+# print(yellow_clean_amount(temp).head())
+# print(yellow_drop_duplicates(temp).shape)
 # ============================================================
 # 🔴 挑戰題（25 分）
 # ============================================================
@@ -93,4 +104,15 @@ def red_clean_orders(path):
     提示：pd.to_datetime(errors='coerce')
     """
     # TODO: 你的程式碼
-    pass
+    df = pd.read_csv(path)
+    df.columns = df.columns.str.strip().str.lower()
+    df['amount'] = df['amount'].str.replace('$', '').str.replace(',', '').astype(float)
+    df['order_date'] = pd.to_datetime(df['order_date'], errors='coerce')
+    df = df.dropna(subset=['order_date', 'amount'])
+    df = df.drop_duplicates()
+
+    return df
+
+# print(red_clean_orders('../datasets/ecommerce/orders_raw.csv').head())
+
+# print(red_clean_orders('../datasets/ecommerce/orders_raw.csv').shape)
